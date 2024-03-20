@@ -13,6 +13,5 @@ environment {
                 sh 'mvn clean deploy'
             }
         }
-
     }
 }

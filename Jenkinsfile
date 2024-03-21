@@ -29,7 +29,7 @@ environment {
         }
         steps{
             withSonarQubeEnv('saurabh-sonarqube-server'){
-                sh "${scannerHome}/bin/sonar-scanner -x"
+                sh "${scannerHome}/bin/sonar-scanner -X"
             }
         }
     }

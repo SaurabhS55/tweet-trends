@@ -3,6 +3,7 @@ pipeline {
     agent {
         node {
             label 'maven'
+            reuseNode true
         }
     }
 environment {

@@ -3,12 +3,11 @@ pipeline {
     agent {
         node {
             label 'maven'
-            reuseNode true
         }
     }
-environment {
-    PATH = "/opt/apache-maven-4.0.0-alpha-10/bin:$PATH"
-}
+    environment {
+        PATH = "/opt/apache-maven-4.0.0-alpha-10/bin:$PATH"
+    }
     stages {
         stage("build"){
             steps {
@@ -25,16 +24,16 @@ environment {
             }
         }
 
-    stage ('SonarQube analysis'){
-        environment {
-            scannerHome = tool 'saurabh-sonar-scanner'
-        }
-        steps{
-            withSonarQubeEnv('saurabh-sonarqube-server'){
-                sh "${scannerHome}/bin/sonar-scanner -X"
+        stage ('SonarQube analysis'){
+            environment {
+                scannerHome = tool 'saurabh-sonar-scanner'
+            }
+            steps{
+                withSonarQubeEnv('saurabh-sonarqube-server'){
+                    sh "${scannerHome}/bin/sonar-scanner -X"
+                }
             }
         }
-    }
     stage("Jar Publish") {
         steps {
             script {

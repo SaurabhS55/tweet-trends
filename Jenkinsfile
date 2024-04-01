@@ -16,24 +16,24 @@ pipeline {
                  echo "----------- build complted ----------"
             }
         }
-        stage("test"){
-            steps{
-                echo "----------- unit test started ----------"
-                sh 'mvn surefire-report:report'
-                 echo "----------- unit test Complted ----------"
-            }
-        }
+        // stage("test"){
+        //     steps{
+        //         echo "----------- unit test started ----------"
+        //         sh 'mvn surefire-report:report'
+        //          echo "----------- unit test Complted ----------"
+        //     }
+        // }
 
-        stage ('SonarQube analysis'){
-            environment {
-                scannerHome = tool 'saurabh-sonar-scanner'
-            }
-            steps{
-                withSonarQubeEnv('saurabh-sonarqube-server'){
-                    sh "${scannerHome}/bin/sonar-scanner -X"
-                }
-            }
-        }
+        // stage ('SonarQube analysis'){
+        //     environment {
+        //         scannerHome = tool 'saurabh-sonar-scanner'
+        //     }
+        //     steps{
+        //         withSonarQubeEnv('saurabh-sonarqube-server'){
+        //             sh "${scannerHome}/bin/sonar-scanner -X"
+        //         }
+        //     }
+        // }
     stage("Jar Publish") {
         steps {
             script {

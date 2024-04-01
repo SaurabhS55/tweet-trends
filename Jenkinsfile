@@ -39,14 +39,14 @@ pipeline {
             script {
                     echo '<--------------- Jar Publish Started --------------->'
                      def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"jfrog-token"
-                     def filePath = "/home/ubuntu/jenkins/workspace/tweet-trend_main/jarstaging/com/valaxy/demo-workshop/2.1.2"
+                    //  def filePath = "/home/ubuntu/jenkins/workspace/tweet-trend_main/jarstaging/com/valaxy/demo-workshop/2.1.2"
 
                      def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                      def uploadSpec = """{
                           "files": [
                             {
-                              "pattern": "${filePath}/*.jar",
-                              "target": "libs-release-local/{1}",
+                              "pattern": "jarstaging/(*)",
+                              "target": "tweettrend-libs-release/{1}",
                               "flat": "false",
                               "props" : "${properties}",
                               "exclusions": [ "*.sha1", "*.md5"]
